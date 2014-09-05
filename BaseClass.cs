@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+
 using HelperClass.Base; // Namespace to make use of BasePage class
 
 namespace HelperClass.Base
@@ -16,15 +17,19 @@ namespace HelperClass.Base
 
             string result = BasePage.Instance.ReadFile("TextFileName.txt"); // Pass the name of the text file to read data
 
-            // Validation of Number - text box.
-            // You can enter only numbers from 1 - 9 and back key in this validation.
-            // Cannot insert special characters like . even when Input Scope in Number.
-            TextBox.KeyDown += new KeyEventHandler(BasePage.Instance.NumberValidation);
+            /*
+             Validation of Number - text box.
+             You can enter only numbers from 1 - 9 and back key in this validation.
+             Cannot insert special characters like . even when Input Scope in Number.
+             */
+             TextBox.KeyDown += new KeyEventHandler(BasePage.Instance.NumberValidation);
 
-            // Validation of Text - text box.
-            // You can enter only alphabets from a - z, space & back key in this validation.
-            // Cannot insert special characters like ., $ anything apart from that.
-            TextBox.KeyDown += new KeyEventHandler(BasePage.Instance.TextValidation);
+            /*
+             Validation of Text - text box.
+             You can enter only alphabets from a - z, space & back key in this validation.
+             Cannot insert special characters like ., $ anything apart from that.
+             */
+             TextBox.KeyDown += new KeyEventHandler(BasePage.Instance.TextValidation);
 
             BasePage.Instance.NotifyPropertyChanged("PropertyName"); // Just pass the name of the Property to notify change in property.
 
@@ -35,7 +40,13 @@ namespace HelperClass.Base
 
             BasePage.Instance.MessageBoxPrint("Text to be printed in Message Box"); // Just pass the string to get printed in MessageBox
 
+            BasePage.Instance.MessageBoxPrintCaption("Caption", "Text to be printed in Message Box"); // Display text with caption and message box button Ok.
+
             BasePage.Instance.DebugPrint("Text to be printed in Console(debug) window"); // Pass the string to get displayed in the console(debug or output) window.
+
+            BasePage.Instance.ShowProgress(); // Runs progress bar in system tray without text
+
+            BasePage.Instance.ShowProgress("loading ..."); // Runs progress bar in system tray with text "loading ...". Pass the required string you want to display           
         }
     }
 }
